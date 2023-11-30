@@ -1,6 +1,22 @@
 <script setup>
 import { ref, computed } from 'vue'
 //#region 左侧
+// navigator
+handleCopy()
+function handleCopy() {
+  let copy_text = '第一行需要复制的内容\r\n第二行需要复制的内容' //拿到想要复制的值
+
+  // 使用Clipboard API复制文本到剪贴板中
+  navigator.clipboard
+    .writeText(copy_text)
+    .then(() => {
+      alert('复制成功！')
+    })
+    .catch((err) => {
+      alert('复制失败！')
+    })
+}
+
 const listLeft = ref([])
 
 // 初始化数据
@@ -145,6 +161,17 @@ function toRight() {
   </div>
 </template>
 <style lang="scss" scoped>
+@media (max-width: 600px) {
+  .module-wrapper {
+    width: 130px !important;
+  }
+}
+.module-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .module-wrapper {
   width: 200px;
   flex-shrink: 0;
